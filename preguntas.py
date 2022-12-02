@@ -75,7 +75,7 @@ def pregunta_03():
     df = pd.read_csv("gm_2008_region.csv", sep=',')
 
     # Asigne a la variable los valores de la columna `fertility`
-    X_fertility = df["fertility"].values.reshape(-1.1)
+    X_fertility = df["fertility"].values.reshape(-1,1)
 
     # Asigne a la variable los valores de la columna `life`
     y_life = df["life"].values.reshape(-1,1)
@@ -89,15 +89,15 @@ def pregunta_03():
     # Cree El espacio de predicción. Esto es, use linspace para crear
     # un vector con valores entre el máximo y el mínimo de X_fertility
     prediction_space = np.linspace(
-        X_fertility.max(),
         X_fertility.min(),
+        X_fertility.max(),
     ).reshape(-1, 1)
 
     # Entrene el modelo usando X_fertility y y_life
-    regr.fit(x_fertility, y_life)
+    regr.fit(X_fertility, y_life)
 
     # Compute las predicciones para el espacio de predicción
-    y_pred = regr.predict(prediction_space)
+    y_pred=regr.predict(prediction_space)
 
     # Imprima el R^2 del modelo con 4 decimales
     print(regr.score(X_fertility, y_life).round(4))
@@ -121,10 +121,10 @@ def pregunta_04():
     df = pd.read_csv("gm_2008_region.csv", sep=',')
 
     # Asigne a la variable los valores de la columna `fertility`
-    X_fertility = df["fertility"].values.reshape(-1.1)
+    X_fertility = df["fertility"].values.reshape(-1,1)
 
     # Asigne a la variable los valores de la columna `life`
-    y_life = df["life"].values.reshape(-1.1)
+    y_life = df["life"].values.reshape(-1,1)
 
     # Divida los datos de entrenamiento y prueba. La semilla del generador de números
     # aleatorios es 53. El tamaño de la muestra de entrenamiento es del 80%
